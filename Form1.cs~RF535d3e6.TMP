@@ -1,0 +1,351 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace AdarshRajaram_Hegde_Assignment2_MS806
+{
+    public partial class Form1 : Form
+    {
+        int TotalGuests;
+        const decimal DEPARTUREATSEVEN = 7.00m, DEPARTUREATEIGHT = 8.00m, DEPARTUREATNINE = 9.00m, DEPARTUREATTEN = 10.00m, DEPARTUREATELEVEN = 11.00m, DEPARTUREATONE = 13.00m;
+        const int CLIFFSOFMOHER = 55, KYLEMOREABBEY = 50, BUNRATTYCASTLE = 75, THEBURREN = 45, CONNEMARA = 75, BELMULLET = 99;
+        const decimal DEPARTUREAT7 = 0.2m, DEPARTUREAT8 = 0.1m, DEPARTUREAT9 = 0.05m, DEPARTUREAT13 = 0.25m, LUNCHCOST=11.50m, DISCOUNT=0.925m;
+        const int FIVESTARHTOEL = 100, FOURSTARHOTEL = 75, THREESTARHOTEL = 50;
+        String LocationName;
+        decimal DepartureTime, TripCost, HotelCost, LunchCost, TotalCost, TotalTransactions=0m, TotalTripCosts=0m, TotalHotelCost=0m,TotalLunchCost=0m, ValueofOptionsChoosen=0m, AverageRevenue=0m, ValueChoosen=0m;
+        
+        private void RadioButton5Star_CheckedChanged(object sender, EventArgs e)
+        {
+            HotelCost = FIVESTARHTOEL * TotalGuests;
+ 
+        }
+
+        private void RadioButton4Star_CheckedChanged(object sender, EventArgs e)
+        {
+            HotelCost = FOURSTARHOTEL * TotalGuests;
+            
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            TextBoxTotalGuests.Text = "";
+            ListBoxLocationAndPrice.SelectedIndex = -1;
+            ListBoxDepartureTime.SelectedIndex = -1;
+
+            RadioButton5Star.Checked = false;
+            RadioButton4Star.Checked = false;
+           RadioButton3Star.Checked = false;
+            CheckBoxLunch.Checked = false;
+            LabelDepartureTimeValue.Text = "";
+            LabelTripcostValue.Text = "";
+            LabelLocationNameValue.Text = "";
+            LabelTotalTripFessValue.Text = "";
+            LabelHotelCostValue.Text = "";
+            LabelLunchCostValue.Text = "";
+            LabelTotalCostValue.Text = "";
+            LabelTotalTransactionsValue.Text = "";
+            LabelTotalTripFessValue.Text = "";
+            LabelValueOfOptionChoosenValue.Text = "";
+            LabelAverageRevenueValue.Text = "";
+            ButtonBook.Enabled = false;
+            RadioButtonNoHotel.Visible = false;
+            ButtonSummary.Enabled = false;
+            TextBoxTotalGuests.Focus();
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+           
+   
+            
+                if (MessageBox.Show(string.Format("No. of guests is " + TotalGuests + "\n" + "Location is " + LocationName + "\n" + "Departure time is " + DepartureTime + "\n" + "Total Cost of the trip is " + TotalCost), "\n", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    TotalTransactions = TotalTransactions + 1;
+                    TotalTripCosts = TotalTripCosts + TripCost;
+                    TotalHotelCost = TotalHotelCost + HotelCost;
+                TotalLunchCost = TotalLunchCost + LunchCost;
+                    ValueChoosen = LunchCost + HotelCost;
+                ValueofOptionsChoosen = ValueofOptionsChoosen + ValueChoosen;
+                    AverageRevenue = (TotalCost / TotalTransactions);
+                }
+            ButtonSummary.Enabled = true;
+        }
+                private void RadioButton3Star_CheckedChanged(object sender, EventArgs e)
+        {
+            HotelCost = THREESTARHOTEL * TotalGuests;
+           
+        }
+
+        private void RadioButtonNoHotel_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButtonNoHotel.Checked)
+            {
+                //LabelTripcostValue.Text = "€" + TripCost.ToString();
+                TotalCost = TripCost + LunchCost;
+                LabelHotelCostValue.Text = "€" + 0.ToString();
+                LabelTotalCostValue.Text = "€" + TotalCost.ToString();
+            }
+            else {
+                LabelTripcostValue.Text = "€" + TripCost.ToString();
+                LabelHotelCostValue.Text = "€" + HotelCost.ToString();
+                LabelTotalCostValue.Text = "€" + TotalCost.ToString();
+            }
+           
+        }
+
+        private void LabelHotelCostValue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelLocationNameValues_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LabelTripcostValue_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+           LabelTotalTransactionsValue.Text = TotalTransactions.ToString();
+            LabelTotalTripFessValue.Text = "€"+TotalTripCosts.ToString();
+            LabelValueOfOptionChoosenValue.Text= "€"+(LunchCost +HotelCost).ToString();
+            LabelAverageRevenueValue.Text = "€" + AverageRevenue.ToString();
+            ButtonClear.Focus();
+        }
+
+        private void TextBoxLunchCost_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public Form1()
+        {
+
+            InitializeComponent();
+           
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            this.ActiveControl = TextBoxTotalGuests;
+           
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                TotalGuests = int.Parse(TextBoxTotalGuests.Text);
+                if (TotalGuests > 0)
+                {
+
+
+                    int LocationIndex = ListBoxLocationAndPrice.SelectedIndex;
+                    if (LocationIndex != -1)
+                    {
+                        switch (LocationIndex)
+                        {
+                            case 0:
+                                TripCost = TotalGuests * CLIFFSOFMOHER;
+                                LocationName = "Cliffs Of Moher";
+                                break;
+                            case 1:
+                                TripCost = TotalGuests * KYLEMOREABBEY;
+                                LocationName = "Kylemore Abbey";
+                                break;
+                            case 2:
+                                TripCost = TotalGuests * BUNRATTYCASTLE;
+                                LocationName = "Bunratty Castle";
+                                break;
+                            case 3:
+                                TripCost = TotalGuests * THEBURREN;
+                                LocationName = "The Burren";
+                                break;
+                            case 4:
+                                TripCost = TotalGuests * CONNEMARA;
+                                LocationName = "Connemara";
+                                break;
+                            case 5:
+                                TripCost = TotalGuests * BELMULLET;
+                                LocationName = "Belmullet";
+                                break;
+                        }
+                        int DepartureTimeIndex = ListBoxDepartureTime.SelectedIndex;
+                        if (DepartureTimeIndex != -1)
+                        {
+                            switch (DepartureTimeIndex)
+                            {
+                                case 0:
+                                    DepartureTime = DEPARTUREATSEVEN;
+                                    TripCost = TripCost - (DEPARTUREAT7 * TripCost);
+                                    break;
+                                case 1:
+                                    DepartureTime = DEPARTUREATEIGHT;
+                                    TripCost = TripCost - (DEPARTUREAT8 * TripCost);
+                                    break;
+                                case 2:
+                                    DepartureTime = DEPARTUREATNINE;
+                                    TripCost = TripCost - (DEPARTUREAT9 * TripCost);
+                                    break;
+                                case 3:
+                                    DepartureTime = DEPARTUREATTEN;
+                                    break;
+                                case 4:
+                                    DepartureTime = DEPARTUREATELEVEN;
+                                    break;
+                                case 5:
+                                    DepartureTime = DEPARTUREATONE;
+                                    TripCost = TripCost - (DEPARTUREAT13 * TripCost);
+                                    break;
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select the Departure Time");
+                    }
+                }
+                else {
+                    MessageBox.Show("Please Select the Location");
+                }
+                }
+            catch
+            {
+                MessageBox.Show("Please Enter the Total Guests");
+                this.ActiveControl = TextBoxTotalGuests;
+            }
+
+
+            if (RadioButton5Star.Checked)
+            {
+                HotelCost = FIVESTARHTOEL * TotalGuests;
+            }
+            else if (RadioButton4Star.Checked)
+            {
+                HotelCost = FOURSTARHOTEL * TotalGuests;
+            }
+            else if(RadioButton3Star.Checked)
+            {
+                HotelCost = THREESTARHOTEL * TotalGuests;
+            }
+           
+           if (CheckBoxLunch.Checked)
+            {
+                LunchCost = TotalGuests* LUNCHCOST;
+            }
+            
+           if(TotalGuests>=3)
+            {
+                TotalCost = DISCOUNT * (TripCost + HotelCost + LunchCost);
+            }
+            else
+            {
+                TotalCost = TripCost + HotelCost + LunchCost;
+            }
+            LabelLocationNameValue.Text = LocationName.ToString();
+            LabelDepartureTimeValue.Text = DepartureTime.ToString();
+            LabelTripcostValue.Text = "€" + TripCost.ToString();
+            TotalCost = Math.Round(TotalCost,2);
+            LabelHotelCostValue.Text = "€" + HotelCost.ToString();
+            LabelLunchCostValue.Text = "€" + LunchCost.ToString();
+            LabelTotalCostValue.Text = "€" + TotalCost.ToString();
+            ButtonDisplay.Enabled = true;
+            ButtonBook.Enabled = true;
+            ButtonClear.Enabled = true;
+            ButtonExit.Enabled = true;
+            }
+            
+        }
+    }
+
+
+
+
